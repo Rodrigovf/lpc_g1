@@ -16,6 +16,25 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from evento.views import inicio, listaEventos, xEvento, listaPessoas, xPessoa, listaAutores, xAutor, listaPessoasJuridicas, xPessoasJuridica, listaPessoasFisicas, xPessoaFisica, listaArtigos, xArtigo
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', inicio, name='inicio'),
+    url(r'^evetos/', listaEventos, name='listaEventos'),
+    url(r'^eventosx/([0-9])$', xEvento),
+    url(r'^pessoas/', listaPessoas, name='listaPessoas'),
+    url(r'^pessoasx/([0-9])$', xPessoa),
+    url(r'^autores/', listaAutores, name='listaAutores'),
+    url(r'^autoresx/([0-9])$', xAutor),
+    url(r'^pessoasjuridicas/', listaPessoasJuridicas, name='listaPessoasJuridicas'),
+    url(r'^pessoasjuridicasx/([0-9])$', xPessoasJuridica),
+    url(r'^pessoasfisicas/', listaPessoasFisicas, name='listaPessoasFisicas'),
+    url(r'^pessoasfisicasx/([0-9])$', xPessoaFisica),
+	url(r'^artigos/', listaArtigos, name='listaArtigos'),
+    url(r'^artigosx/([0-9])$', xArtigo),
+
+
+
+   
 ]
