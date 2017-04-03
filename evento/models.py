@@ -8,7 +8,7 @@ class Evento(models.Model):
     nome = models.CharField(max_length=200)
     eventoPrincipal= models.CharField(max_length=200)
     sigla = models.CharField(max_length=20)
-    dataEHoraDeInicio = models.DateField()
+    dataEHoraDeInicio = models.DateTimeField(timezone.now())
     palavrasChave = models.CharField(max_length=100)
     logotipo = models.CharField(max_length=50)
     realizador = models.ForeignKey('Pessoa')
@@ -16,7 +16,6 @@ class Evento(models.Model):
     uf = models.CharField(max_length=2)
     endereco = models.CharField(max_length=200)
     cep = models.CharField(max_length=15)
-
 
 
 class Pessoa(models.Model):
@@ -27,6 +26,7 @@ class Pessoa(models.Model):
 class Autor(Pessoa):
 	curriculo = models.CharField(max_length=200)
 	artigos = models.ForeignKey('ArtigoCientifico')
+
 class PessoaJuridica(Pessoa):
 	cnpj = models.CharField(max_length=50)
 	razaoSocial = models.CharField(max_length=200)
@@ -34,13 +34,13 @@ class PessoaJuridica(Pessoa):
 class PessoaFisica(Pessoa):
 	cpf = models.CharField(max_length=11)
 
-class EventoCientifico(models.Model):
+class EventoCientifico(Evento):
 	issn = models.CharField(max_length=200)
 	
 
 class ArtigoCientifico(models.Model):
 	nome = models.CharField(max_length=200)
-	autores = models.ForeignKey('Autor')
+	autores = models.ManyToManyField(Autor)
 	evento = models.ForeignKey('EventoCientifico')
 		
 	
