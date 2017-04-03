@@ -8,7 +8,7 @@ class Evento(models.Model):
     nome = models.CharField(max_length=200)
     eventoPrincipal= models.CharField(max_length=200)
     sigla = models.CharField(max_length=20)
-    dataEHoraDeInicio = models.DateTimeField(timezone.now())
+    dataEHoraDeInicio = models.DateTimeField('Hora do evento',default=timezone.now())
     palavrasChave = models.CharField(max_length=100)
     logotipo = models.CharField(max_length=50)
     realizador = models.ForeignKey('Pessoa')
